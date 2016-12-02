@@ -15,9 +15,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//set environment variables
-app.set('port', process.env.PORT || 3000 );
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -58,11 +55,6 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});
-
-//running server on node
-var server = app.listen(app.get('port'), function () {
-	console.log('Listening on port ' + app.get('port'));
 });
 
 module.exports = app;

@@ -17,6 +17,7 @@ body {
 }
 
 .text-vertical-center {
+    color: #ffc800;    /* Rakesh 04/12/2016 This is to force text color to #ffc800. Without this the color inherets from Bootstrap body */
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -155,7 +156,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../images/photo-144.jpg) no-repeat center center scroll;
+    background: url(../images/sjwpkmb9u-k-maico-amorim.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

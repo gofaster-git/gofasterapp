@@ -1,0 +1,154 @@
+﻿<style>
+    /*For the Find button-start*/
+    .btn-2action {
+        line-height: 19px;
+        font-family: Arial,Helvetica,sans-serif;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background: #6341FC;
+        border: 1px solid #6341FC;
+        border-bottom: 2px solid #6341FC; 
+        font-weight: normal;
+        border-radius: 30px;
+        box-shadow: none;
+        height: 40px;
+        width: 100px;
+        margin-bottom:0px 0px 0px 0px;
+    }
+    .btn-2action:hover{
+        color:#fff;
+        font-weight:bold;
+    }
+    /*For the Find button-end*/
+   .search-from{
+                border: 1px solid #b4b4b4;
+                box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                color: #413D35;
+                font-size: 18px;
+                line-height: 19px;
+                text-indent: 22px;
+                width: 300px;
+                background: url(images/from.png) no-repeat scroll;
+                padding-left:30px;
+                height: 45px;
+                background-color: white;
+                background-size:1.8em;
+            }
+    .search-to{
+                border: 1px solid #b4b4b4;
+                box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                color: #413D35;
+                font-size: 18px;
+                line-height: 19px;
+                text-indent: 22px;
+                width: 300px;
+                background: url(images/to.png) no-repeat scroll;
+                padding-left:30px;
+                height: 45px;
+                background-color: white;
+                background-size:1.8em;
+                hover: 
+            } 
+    .search-form {
+    float: left;
+    }
+    .trip-search-form {
+    padding: 18px;
+    background-image: none;
+    margin: 19px 0 9px 0;
+    float: none;
+    box-shadow: rgba(0,0,0,0.38) 0 0 10px inset;
+    }
+    .search-container {
+        background: #F1C40F;
+        margin-top:45px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        box-shadow: rgba(0,0,0,0.3) 2px 2px 8px inset,rgba(0,0,0,0.3) -2px -2px 8px inset;
+        min-width: 330px;
+        height:120px;
+    }
+    .search-container h2 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 100%;
+            padding: 0px 0px 19px 20px;
+            text-shadow: 4px 0 3px rgba(0,0,0,0.25);
+        }
+     .location-from, .location-to, .location-date {
+        position: relative;
+        display: inline-block;
+    }
+
+        .location-from input[type="text"], .location-to input[type="text"], .location-date input[type="text"] {
+            padding-left: 35px;
+            line-height: 19px;
+        }
+
+        .location-from .location-circle, .location-from .input-icon, .location-to .location-circle, .location-to .input-icon, .location-date .location-circle, .location-date .input-icon {
+            position: absolute;
+            top: 5px;
+            left: 7px;
+            z-index: 2;
+        }
+
+        .location-from.empty .location-circle, .location-from.empty .input-icon, .location-to.empty .location-circle, .location-to.empty .input-icon, .location-date.empty .location-circle, .location-date.empty .input-icon {
+            top: 10px;
+        }
+        body {
+            text-align: center; 
+        }
+</style>
+<!--<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>-->
+</head>
+<div class="search-container">
+    <h2 style="padding-right:560px;padding-top:10px"> 
+        Find a carrier
+     </h2>
+    <form class="form-inline" style="margin-top:-10px">
+
+        <!-- vs-google-autocomplete -->
+        <div class="location-from empty">
+          <input vs-google-autocomplete="{ types:['(cities)'] }"
+                 ng-model="from_city" 
+                 type="text" 
+                 name="From"
+                 id="from"
+                 class="search-from" 
+                 placeholder="From">
+        </div>
+        
+       <div class="location-from empty">
+          <input vs-google-autocomplete="{ types:['(cities)'] }"
+                 ng-model="to_city" 
+                 type="text" 
+                 name="To"
+                 id="to"
+                 class="search-to" 
+                 placeholder="To">
+        </div>
+        <div class="location-from empty">
+          <button class="btn-2action" ng-click="gotoCarrierResults()">F i n d</button>
+        </div>
+   </form> 
+   </div>

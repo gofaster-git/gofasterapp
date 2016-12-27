@@ -1,0 +1,473 @@
+﻿<style>
+    /*For the Find button-start*/
+    .btn-2action {
+        line-height: 19px;
+        font-family: Arial,Helvetica,sans-serif;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background: #6341FC;
+        border: 1px solid #6341FC;
+        border-bottom: 2px solid #6341FC; 
+        font-weight: normal;
+        border-radius: 30px;
+        box-shadow: none;
+        height: 40px;
+        width: 100px;
+        margin-bottom:0px 0px 0px 0px;
+    }
+    .btn-2action:hover{
+        color:#fff;
+        font-weight:bold;
+    }
+    /*For the Find button-end*/
+   .search-from{
+                border: 1px solid #b4b4b4;
+                box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                color: #413D35;
+                font-size: 18px;
+                line-height: 19px;
+                text-indent: 22px;
+                width: 300px;
+                background: url(images/from.png) no-repeat scroll;
+                padding-left:30px;
+                height: 45px;
+                background-color: white;
+                background-size:1.8em;
+            }
+    .search-to{
+                border: 1px solid #b4b4b4;
+                box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                color: #413D35;
+                font-size: 18px;
+                line-height: 19px;
+                text-indent: 22px;
+                width: 300px;
+                background: url(images/to.png) no-repeat scroll;
+                padding-left:30px;
+                height: 45px;
+                background-color: white;
+                background-size:1.8em;
+                hover: 
+            } 
+    .search-form {
+    float: left;
+    }
+    .trip-search-form {
+    padding: 18px;
+    background-image: none;
+    margin: 19px 0 9px 0;
+    float: none;
+    box-shadow: rgba(0,0,0,0.38) 0 0 10px inset;
+    }
+    .search-container {
+        background: #F1C40F;
+        margin-top: 45px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        box-shadow: rgba(0,0,0,0.3) 2px 2px 8px inset,rgba(0,0,0,0.3) -2px -2px 8px inset;
+        min-width: 330px;
+        width:65%;
+    }
+    .search-container h2 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: normal;
+            line-height: 100%;
+            padding: 0px 0 9px 19px;
+            text-shadow: 4px 0 3px rgba(0,0,0,0.25);
+        }
+     .location-from, .location-to, .location-date {
+        position: relative;
+        display: inline-block;
+    }
+
+        .location-from input[type="text"], .location-to input[type="text"], .location-date input[type="text"] {
+            padding-left: 35px;
+            line-height: 19px;
+        }
+
+        .location-from .location-circle, .location-from .input-icon, .location-to .location-circle, .location-to .input-icon, .location-date .location-circle, .location-date .input-icon {
+            position: absolute;
+            top: 5px;
+            left: 7px;
+            z-index: 2;
+        }
+
+        .location-from.empty .location-circle, .location-from.empty .input-icon, .location-to.empty .location-circle, .location-to.empty .input-icon, .location-date.empty .location-circle, .location-date.empty .input-icon {
+            top: 10px;
+        }
+    /*Carrier Results Table - Start*/
+        .trip-search-results {
+            margin: 0;
+            border-top: 1px solid #ddd;
+        }
+            .trip-search-results .trip {
+            list-style: none;
+            border: 0;
+            border-bottom: 1px solid #ddd;
+            }
+        .ProfileCard {
+        display: block;
+        }
+
+        .ProfileCard--large {
+            font-size: 24px;
+            margin-bottom: 35px;
+        }
+
+        .ProfileCard--condensed {
+            width: 190px;
+        }
+
+        .ProfileCard-row {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+            .ProfileCard-row .prefs-title {
+                display: inline-block;
+                width: 154px;
+                margin-right: 3px;
+                color: #727272;
+                float: none;
+                vertical-align: middle;
+            }
+
+            .ProfileCard-row .big-prefs {
+                display: inline-block;
+                float: none;
+                vertical-align: middle;
+            }
+
+            .ProfileCard-row .prefs {
+                margin-top: 2px;
+            }
+
+            .ProfileCard-row .bbc-icon-star:before {
+                margin-left: 0;
+            }
+
+            .ProfileCard-row .popover-title {
+                display: none;
+            }
+
+            .ProfileCard-row .user-trust-fb {
+                display: block;
+                padding: 2px 0;
+            }
+
+                .ProfileCard-row .user-trust-fb i:before {
+                    vertical-align: middle;
+                }
+
+        .ProfileCard--large .ProfileCard-row {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+            .ProfileCard--large .ProfileCard-row:after {
+                content: "";
+                display: inline-block;
+                height: 40px;
+                width: 1px;
+            }
+
+        .ProfileCard--condensed .ProfileCard-row {
+            margin-left: 10px;
+            margin-bottom: 2px;
+        }
+
+        .ProfileCard-rowLabel {
+            width: 154px;
+            margin-right: 8px;
+            color: #727272;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .ProfileCard-head {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ProfileCard--condensed .ProfileCard-head {
+            margin-left: 10px;
+        }
+
+        .ProfileCard-infosBlock {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding-left: 8px;
+        }
+
+        .ProfileCard--large .ProfileCard-infosBlock {
+            padding-left: 20px;
+        }
+
+        .ProfileCard-info {
+            display: block;
+            max-width: 196px;
+        }
+
+        .ProfileCard-info--name {
+            font-weight: bold;
+            font-size: 1.14em;
+            color: #413D35;
+            margin: 0;
+        }
+
+            .ProfileCard-info--name a {
+                color: inherit;
+            }
+
+        .ProfileCard-info + .ProfileCard-info {
+            padding-top: 9px;
+        }
+
+        .ProfileCard--large .ProfileCard-info {
+            max-width: none;
+            line-height: 1em;
+        }
+
+        .ProfileCard--condensed .ProfileCard-info {
+            max-width: 90px;
+        }
+
+        .ProfileCard--large .ProfileCard-info + .ProfileCard-info {
+            padding-top: 28px;
+        }
+        
+    .PhotoWrapper {
+        position: relative;
+        display: block;
+    }
+
+    a.PhotoWrapper {
+        text-decoration: none;
+    }
+
+    .PhotoWrapper--inlineBlock {
+        display: inline-block;
+    }
+
+    .PhotoWrapper--smallest, .PhotoWrapper-user--smallest {
+        width: 18px;
+        height: 18px;
+    }
+
+    .PhotoWrapper--smaller, .PhotoWrapper-user--smaller {
+        width: 36px;
+        height: 36px;
+    }
+
+    .PhotoWrapper--small, .PhotoWrapper-user--small {
+        width: 54px;
+        height: 54px;
+    }
+
+    .PhotoWrapper--medium, .PhotoWrapper-user--medium {
+        width: 72px;
+        height: 72px;
+    }
+
+    .PhotoWrapper--big, .PhotoWrapper-user--big {
+        width: 108px;
+        height: 108px;
+    }
+
+    .PhotoWrapper--bigger, .PhotoWrapper-user--bigger {
+        width: 144px;
+        height: 144px;
+    }
+
+    .PhotoWrapper-pill {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        line-height: 0;
+    }
+
+        .PhotoWrapper-pill:before {
+            margin: 0 !important;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+    .PhotoWrapper--medium .PhotoWrapper-pill:before {
+        font-size: 18px;
+    }
+
+    .PhotoWrapper--big .PhotoWrapper-pill:before {
+        font-size: 24px;
+    }
+
+    .PhotoWrapper--bigger .PhotoWrapper-pill:before {
+        font-size: 36px;
+    }
+
+    .PhotoWrapper-user {
+        border-radius: 50%;
+    }
+
+    .description {
+            width: 348px;
+            margin: 0 0 0 5px;
+        }
+     .trip-search-results [class*=span] {
+        min-height: inherit;
+    }
+    .time{
+        font-weight: bold;
+        font-size: 19px;
+        line-height: 27px;
+    }
+    .light-gray {
+        color: #413D35 !important;
+    }
+.u-green {
+    color: #008000 !important;
+}
+.u-red {
+    color: #FF0000 !important;
+}
+.fromto{
+    font-size: 16px;
+    margin-bottom: 11px;
+    color: #ADAFAF;
+}
+h1, h2, h3 {
+    line-height: 18px;
+    font-weight: normal;
+    margin: 1px;
+    font-family: inherit;
+    text-rendering: optimizelegibility;
+}
+.trip-roads-stop {
+    color: #413D35;
+}
+.arrow-ie {
+    font-family: "Times New Roman";
+    color: #ADAFAF;
+}
+.geo-from, .geo-to {
+    color: #727272;
+    line-height: 22px;
+    margin: 0;
+    overflow: hidden;
+}
+.price{
+    margin-bottom: 1px;
+    min-height: 61px;
+}
+.price-black {
+    color: #413D35;
+}
+.price strong{
+    font-size: 25px;
+    line-height: 30px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    text-align:middle;
+}
+    /*Carrier Results Table - End*/
+    
+    body {
+        text-align: left; 
+    }
+</style>
+</head>
+<!--<div class="trip-search-form search-form search-container">
+    <div class="search-in">
+        <form class="form-inline" style="display: inline-block;text-align: center;">
+            <div class="location-from empty">
+            <input vs-google-autocomplete="{ types:['(cities)'] }"
+                ng-model="from_city" type="text" name="From"
+                id="from" class="search-from" placeholder="From">
+            </div>
+            
+            <div class="location-from empty">
+                <input vs-google-autocomplete="{ types:['(cities)'] }"
+                    ng-model="to_city" type="text" name="To"
+                    id="to" class="search-to" placeholder="To">
+            </div>
+            <div class="location-from empty">
+            <button class="btn-2action">F i n d</button>
+            </div>
+       </form> 
+    </div>
+</div>-->
+<div id="carriersearch" class="row">
+    
+<p style="text-align:center;color:white;font-weight:bold;padding-top:30%">Under construction!</p>
+<!--<table st-table="rowCollection" class="table table-striped">
+	<tbody>
+	    <tr ng-repeat="row in rowCollection" class="trip-search-results" st-select-row="row"  st-select-mode="single">
+		<td>
+            <div class="ProfileCard ProfileCard--condensed">
+                <div class="ProfileCard-head">
+                        <div class="ProfileCard-picture">
+                            <div class="PhotoWrapper PhotoWrapper--medium">
+                                <img src="images/mani.png" width="72" height="72" alt="" class="PhotoWrapper-user PhotoWrapper-user--medium u-rounded ">
+                                <i class="u-green glyphicon glyphicon-ok-sign" aria-hidden="true">Verified</i>
+                                
+                            </div>
+                        </div>
+                        <div class="ProfileCard-infosBlock">
+                            <h2 class="ProfileCard-info ProfileCard-info--name u-truncate">
+                                Mani R
+                            </h2>
+                            <div class="ProfileCard-info">
+                                35 yrs<br>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </td>
+		<td>
+            <div class="description">
+                <h3 class="time light-gray" itemprop="startDate" content="2016-11-24">
+                    Date: 12, Dec, 2016
+                </h3>
+                <div>
+                    <i class="u-green glyphicon glyphicon-hand-right" title="Pick-up point">
+                        {{from_city}}
+                    </i>
+                </div>
+                <div>
+                    <i class="u-red glyphicon glyphicon-hand-right" title="Drop-off point">
+                        {{to_city}}
+                    </i>
+                </div>
+            </div>
+        </td>
+		<td>
+            <div class="price price-black">
+                <strong><span class>
+                £ 50
+                </span></strong>
+            </div>
+        </td>
+	</tr>
+	</tbody>
+</table>-->
+
+
+</div>    

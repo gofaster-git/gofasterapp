@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html ng-app="main">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Mani" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width" />
+    <title>GoFaster - SignUp to Deliver or Compare Price to Ship</title>
+    <!-- Js/Styles -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/custom.css" rel="stylesheet">
+    <link href="/stylesheets/stylish-portfolio.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="/js/modernzr.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <!-- <script src="/js/jquery-1.10.2.js"></script> -->
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/angular-resource/angular-resource.js"></script>
+    <script src="/angular-filter/dist/angular-filter.js"></script>
+    <script src="/underscore/underscore.js"></script>
+    <!-- Controllers -->
+    <script src="/modules/mainApp.js"></script>
+    <script src="/controllers/MainController.js"></script>
+    <script src="/controllers/AuthController.js"></script>
+    <script src="/controllers/ModalWindowController.js"></script>
+    <script src="/controllers/CarrierResultsController.js"></script>
+    <script src="/controllers/BecomeCarrierController.js"></script>
+    <script src="/controllers/TestController.js"></script>
+    <!-- dependencies -->
+    <script src="/scripts/ui-bootstrap.js"></script>
+    <script src="/scripts/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="/scripts1/vs-google-autocomplete.js"></script>
+    <script src="/scripts2/smart-table.js"></script>
+    <script src="/scripts4/ng-file-upload.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+     $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        
+        // $('#back-to-top').tooltip('show');
+});
+</script>
+    <style>
+    .Carrier-button {
+        background-color: #FED141;
+        color: #000000;
+        border-color: #FED141;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-top:15px;
+        width:150px;
+    }   
+    .CarrierButton:hover{
+        color: #fff;
+    }
+    .slider{
+        background:repeat top center;
+        width:100%; float:left;
+        height:100%
+    }
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        display:none;
+    }
+    .btn-scrollStyle {
+        background-color: #F1C40F;
+        color: #fff;
+        border: 2px solid #F1C40F;
+        border-radius:10px;
+    }
+    <!-- html { 
+        background: url(../images/sjwpkmb9u-k-maico-amorim.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    } -->
+    .alert-success1 {
+        color: #FDFEFE;
+        background-color: #27AE60;
+        border-color: #d6e9c6;
+    }
+    .alert1 {
+        padding: 5px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    body{
+    background-color:transparent;
+    </style>
+</head>
+    <body style="background-size: cover;background-position: center center;overflow-x: hidden;">
+        <!-- Navigation -->
+        <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle" style="border-radius:10px;">
+            <i class="fa fa-bars"></i>
+        </a>    
+       
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+                <li class="sidebar-brand">
+                    <a href="#/home" onclick=$("#menu-close").click();>GoFaster</a>
+                </li>
+                <!-- <li>
+                    <p style="color:white;">Signed in as <u style="color:#F39C12;">{{current_fullname}}</u></p>
+                </li> -->
+                <li>
+                    <a href="#/home" onclick=$("#menu-close").click(); ng-click="reset()">Home</a>
+                </li>
+                <li>
+                    <a href="#services" onclick=$("#menu-close").click();>How it works?</a>
+                </li>
+                <li>
+                    <a href="#portfolio" onclick=$("#menu-close").click();>Testomony</a>
+                </li>
+                <li>
+                    <a style="cursor: pointer;" ng-click="openBecomeaCarrier()">Become a Carrier</a>
+                </li>
+                <li>
+                    <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+                </li>
+                <li>
+                    <p ng-hide="authenticated">
+                        <a href="#" ng-click="loginmodal()" data-toggle="modal">Login/Register</a>
+                    </p>
+                </li>
+                <li>
+                    <p ng-show="authenticated">
+                        <a href="#" onclick=$("#menu-close").click(); ng-click="signout()">Logout</a>
+                    </p>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="top" style="position: relative;color:#fff;padding:17px 20% 0% 0%;float:right">
+            Signed in as <a style="color:#F1C40F;font-weight:bold; cursor:pointer" ng-click="openProfilePage()">{{current_fullname.split(' ')[0]}}</a>
+        </div>
+        
+        <div class="container body-content header">
+            <div style="padding-left:15%;padding-top:4%;position:absolute;">
+                <div style="border-radius:3px" class="alert1 alert-success1" ng-show="showSuccessAlert">
+                    <button style="padding-left:5px;" type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">
+                        ×
+                    </button>
+                    <strong>Done!</strong> {{successTextAlert}}
+                </div>
+            </div>
+            <div ui-view>
+            </div>
+            <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+        </div>
+    <script>
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Scrolls to the selected menu item on the page
+        $(function() {
+            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        //#to-top button appears after scrolling
+        var fixed = false;
+        $(document).scroll(function() {
+            if ($(this).scrollTop() > 250) {
+                if (!fixed) {
+                    fixed = true;
+                    // $('#to-top').css({position:'fixed', display:'block'});
+                    $('#to-top').show("slow", function() {
+                        $('#to-top').css({
+                            position: 'fixed',
+                            display: 'block'
+                        });
+                    });
+                }
+            } else {
+                if (fixed) {
+                    fixed = false;
+                    $('#to-top').hide("slow", function() {
+                        $('#to-top').css({
+                            display: 'none'
+                        });
+                    });
+                }
+            }
+        });
+        var onMapMouseleaveHandler = function(event) {
+            var that = $(this);
+            that.on('click', onMapClickHandler);
+            that.off('mouseleave', onMapMouseleaveHandler);
+            that.find('iframe').css("pointer-events", "none");
+        }
+        var onMapClickHandler = function(event) {
+                var that = $(this);
+                // Disable the click handler until the user leaves the map area
+                that.off('click', onMapClickHandler);
+                // Enable scrolling zoom
+                that.find('iframe').css("pointer-events", "auto");
+                // Handle the mouse leave event
+                that.on('mouseleave', onMapMouseleaveHandler);
+            }
+            // Enable map zooming with mouse scroll when the user clicks the map
+        $('.map').on('click', onMapClickHandler);
+    </script>
+    </body>
+</html>

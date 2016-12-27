@@ -1,18 +1,40 @@
 {
   "name": "gofasterapp",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.15.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "ejs": "^2.5.3",
-    "express": "~4.13.4",
-    "jade": "~1.11.0",
-    "morgan": "~1.7.0",
-    "serve-favicon": "^2.3.2"
-  }
+    "angular-resource": "^1.4.7",
+    "angular-route": "^1.6.0",
+    "angular-ui-router": "^0.3.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "dhl": "^1.2.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "extend": "^3.0.0",
+    "https": "^1.0.0",
+    "jade": "^1.11.0",
+    "modernizr": "^3.3.1",
+    "moment": "^2.16.0",
+    "mongoose": "^4.2.4",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.3.0",
+    "vsGoogleAutocomplete": "^0.5.0",
+    "x2js": "^3.0.1",
+    "xmlbuilder": "^8.2.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "Mani Kumar",
+  "license": "GoFaster"
 }

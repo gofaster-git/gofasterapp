@@ -1,0 +1,197 @@
+<style>
+.panel-login {
+    border-color: #fff;
+    background-color: #F4D03F;
+}
+.footer-div {
+    border-color: #fff;
+    border-radius: 10px;
+    background-color: #F4D03F;
+    -webkit-box-shadow: 0px 2px 3px 0px #F4D03F;
+	-moz-box-shadow: 0px 2px 3px 0px #F4D03F;
+	box-shadow: 0px 2px 3px 0px #F4D03F;
+    text-align:center;
+    padding-bottom:5px;
+    padding-top:5px;
+}
+.footer-signinwith{text-align:center;}
+.footer-signinwith> hr{
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),#F39C12,rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #F4D03F;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),#F39C12,rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),#F39C12,rgba(0,0,0,0));
+}
+.closeBtn{
+    color: #F4D03F;
+    float: right;
+}
+.closeBtn:hover{
+    color: #F39C12;
+}
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+hr {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.panel {
+     margin-bottom: 0px; 
+     border: 0;
+}
+.modal-content{
+    -webkit-box-shadow: 0px;
+     box-shadow: 0px; 
+     border: 0px; 
+     border: 0px; 
+     border-radius: 10px;
+}
+</style>
+<script>
+$(function() {
+
+    $('#login-form-link').click(function(e) {
+    	$("#login-form").delay(100).fadeIn(100);
+ 		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+ 		$("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+});
+</script>
+<div>
+    <div class="panel panel-login" style="padding-top:3%">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="#" class="active" id="login-form-link">Login</a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="#" id="register-form-link">Register</a>
+                    <i type="button" class="closeBtn glyphicon glyphicon-remove-circle gi-2x" ng-click="close()" aria-hidden="true">
+                    </i>
+                </div>
+                
+            </div>
+            <hr>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="login-form" class="form-horizontal" role="form" style="display: block;" ng-submit="login()">
+                        <p class="text-warning">{{error_message}}</p>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">
+                                Email</label>
+                            <div class="col-sm-10">
+                                <input name="email" type="email" ng-model="user.username" class="form-control" id="email1" placeholder="Email"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                Password</label>
+                            <div class="col-sm-10">
+                                <input name="password" type="password" ng-model="user.password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-custom-reverse btn-sm">
+                                    Login</button>
+                                <a href="javascript:;" style="color:#2E86C1">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="register-form" class="form-horizontal" role="form" style="display: none;" ng-submit="register()">
+                        <p class="text-warning">{{error_message}}</p>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">
+                                Full Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" ng-model="user.fullname" class="form-control" placeholder="Name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">
+                                Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" ng-model="user.username" class="form-control" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">
+                                Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" ng-model="user.password" class="form-control" id="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-custom-reverse btn-sm">
+                                    Register</button>   
+                                <button ng-click="close()" type="button" class="btn btn-custom-reverse btn-sm">
+                                    Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-signinwith">
+        <h4>Sign in with</h4>
+        <hr>
+    <div>
+    <div class="footer-div">
+        <div class="btn btn-group">
+            <a href="#" style="width:100px" class="btn btn-blue">Facebook</a>
+            <a href="#" style="width:100px" class="btn btn-danger">Google</a>
+        </div>
+    </div>
+</div>

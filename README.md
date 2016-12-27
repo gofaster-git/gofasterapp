@@ -1,1 +1,1 @@
-# GoSlower
+# GoFaster

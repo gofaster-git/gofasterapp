@@ -16,6 +16,7 @@
     "cookie-parser": "^1.4.0",
     "dhl": "^1.2.0",
     "ejs": "^2.3.4",
+    "escape-html": "^1.0.3",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "extend": "^3.0.0",

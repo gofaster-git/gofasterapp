@@ -1,4 +1,4 @@
-//adding opensource modules to application 
+//adding opensource modules to application
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -13,8 +13,9 @@ var mongoose = require('mongoose');
 var models_user = require('./angular/models/user.js');
 var models_carrier = require('./angular/models/carrier.js');
 var x2js = require('x2js');
+var escape = require('escape-html');
 //connection database
-mongoose.connect('mongodb://localhost/sharedeconomy');
+//mongoose.connect('mongodb://remote:MiltonKeynes@ec2-54-197-83-74.compute-1.amazonaws.com:27017/gofaseterapp');
 
 //import the routers
 var router = require('./routes/router');

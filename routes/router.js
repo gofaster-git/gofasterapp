@@ -68,7 +68,7 @@ router.get('/deleteFile', function(req, res) {
   })
 });
 router.get('/',function(req,res,next){	
-	res.render('Starter',{title:"ManiMean"});	
+	res.render('starter',{title:"ManiMean"});	
   });
   //Below router is used to call the DHL tracking post function
   router.get('/trackitem',function(req,res)

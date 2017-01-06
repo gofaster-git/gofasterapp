@@ -17,7 +17,7 @@ var escape = require('escape-html');
 //connection database
 //mongoose.connect('mongodb://remote:MiltonKeynes@ec2-54-197-83-74.compute-1.amazonaws.com:27017/gofaseterapp');
 //'mongodb://{NEW USERNAME}:{NEW PASSWORD}@{EC2 URL}:{PORT}/dummyDB'
-mongoose.connect('mongodb://gofasterapp:prodinstance@ec2-35-167-79-162.us-west-2.compute.amazonaws.com:27017/gofaseterdb');
+mongoose.connect('mongodb://gofaster:prodinstance@ec2-35-167-79-162.us-west-2.compute.amazonaws.com:27017/gofaseterdb');
 
 //import the routers
 var router = require('./routes/router');

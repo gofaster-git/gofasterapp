@@ -19,6 +19,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "extend": "^3.0.0",
+    "forever": "^0.15.3",
     "https": "^1.0.0",
     "jade": "^1.11.0",
     "modernizr": "^3.3.1",

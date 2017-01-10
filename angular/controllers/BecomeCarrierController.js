@@ -494,6 +494,7 @@ $scope.uploadPassport = function(file, errFiles, index){
         if (file) {
             file.upload = Upload.upload({
                 url: 'http://ec2-35-167-79-162.us-west-2.compute.amazonaws.com:80/upload',
+                header: 'Access-Control-Allow-Origin: *',
                 data: {file: file}
             });
 

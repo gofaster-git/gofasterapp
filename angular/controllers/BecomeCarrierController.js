@@ -493,7 +493,7 @@ $scope.uploadPassport = function(file, errFiles, index){
         $scope.passportList[index].passport=file;
         if (file) {
             file.upload = Upload.upload({
-                url: '/upload',
+                url: 'http://ec2-35-167-79-162.us-west-2.compute.amazonaws.com:80/upload',
                 data: {file: file}
             });
 

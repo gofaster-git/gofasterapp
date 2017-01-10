@@ -141,7 +141,12 @@ $scope.callingTrack = function() {
         controller: 'AuthController'
       });
     }
-
+    $rootScope.openAvailable = function(){
+      $rootScope.modalInstance = modalWindow.open({
+          templateUrl: 'available.html',
+          controller: 'AvailableController'
+        });
+    };
     $rootScope.openProfilePage = function(){
       
       //If the user has already registered then direct user to BecomeCarrier page

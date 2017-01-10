@@ -30,6 +30,8 @@
     <script src="/controllers/CarrierResultsController.js"></script>
     <script src="/controllers/BecomeCarrierController.js"></script>
     <script src="/controllers/TestController.js"></script>
+    <script src="/controllers/AvailableController.js"></script>
+    
     <!-- dependencies -->
     <script src="/scripts/ui-bootstrap.js"></script>
     <script src="/scripts/ui-bootstrap-tpls.js"></script>
@@ -120,13 +122,13 @@
             <ul class="sidebar-nav">
                 <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
                 <li class="sidebar-brand">
-                    <a href="#/home" onclick=$("#menu-close").click();>GoFaster</a>
+                    <a href="#" onclick=$("#menu-close").click();>GoFaster</a>
                 </li>
                 <!-- <li>
                     <p style="color:white;">Signed in as <u style="color:#F39C12;">{{current_fullname}}</u></p>
                 </li> -->
                 <li>
-                    <a href="#/home" onclick=$("#menu-close").click(); ng-click="reset()">Home</a>
+                    <a href="#" onclick=$("#menu-close").click(); ng-click="reset()">Home</a>
                 </li>
                 <li>
                     <a href="#services" onclick=$("#menu-close").click();>How it works?</a>

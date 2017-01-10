@@ -466,6 +466,55 @@ router.post('/carrierDocumentsSave', function(req, res, done){
     });
   });
 });
+//availableSave
+router.post('/availableSave', function(req, res, done){
+      Carrier.findOne({ 'username' : req.user.username }, function(err, exists)
+      {
+        // do update for the exisitng carrier
+          if (req.body.carrieravailable){
+              exists.from = req.body.carrieravailable.from;
+              exists.to = req.body.carrieravailable.to;
+              exists.carrierstatus = "yes";          
+          }
+          exists.save(function(err)
+          {
+            if (err)
+              {
+                console.log('error');
+                res.send(err);
+              }
+            else
+              {
+                console.log('success');
+                res.send("success");
+              }
+          });
+      });
+});
+//availableSave
+router.post('/notavailableSave', function(req, res, done){
+      Carrier.findOne({ 'username' : req.user.username }, function(err, exists)
+      {
+        // do update for the exisitng carrier
+          if(exists.carrierstatus == "yes")
+            {
+              exists.carrierstatus = "no";
+            }
+          exists.save(function(err)
+          {
+            if (err)
+              {
+                console.log('error');
+                res.send(err);
+              }
+            else
+              {
+                console.log('success');
+                res.send("success");
+              }
+          });
+      });
+});
 //carrierGet
 router.get('/carrierGet', function(req, res, done){
     Carrier.findOne({ 'username' :  req.user._doc.username }, 

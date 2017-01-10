@@ -9,6 +9,9 @@ var carrierSchema = new Schema({
 	profession: Array,
 	verification: Array,
 	documents: Array,
+	from: String,
+	to: String,
+	carrierstatus: String,
 	created_at: {type: Date, default: Date.now},
 	updated_at: {type: Date, default: Date.now}
 });

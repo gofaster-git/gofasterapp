@@ -1,6 +1,19 @@
 ﻿<div class="customrow">
+    
     <div class="customboard">
         <div class="customboard-inner">
+            <!--Below code will activate or deactive the carrier-->
+            <div class="custompanel-active-heading">
+                <h4 class="custompanel-active-title">
+                    <!--Carrier Status : <a style="color:#283747;font-weight:bold; cursor:pointer" ng-click="activateCarrier()"><u>Active</u></a>-->
+                    Carrier Status : 
+                    <availability-toggle>
+                        <a ng_click="available();" class="defaultcarrieravailable {{availableValue}}">Available</a> |
+                        <a ng_click="unavailable();" class="defaultcarrieravailable {{unavailableValue}}">Not available</a>
+                    </availability-toggle>
+                </h4>
+                
+            </div>
             <ul class="customnav customnav-tabs" id="myTab">
                 <div class="customliner"></div>
                 <!--Tab1-->

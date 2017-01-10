@@ -623,5 +623,38 @@ li.active span.customround-tabs.six{
 label{
     padding-top:3px;
 }
+.custompanel-active-heading {
+    font-weight: 400;
+    padding: 12px 35px 12px 15px;
+    display: inline-block;
+    width: 100%;
+    background-color: #F1C40F;
+    color: #ffffff;
+    position: relative;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.custompanel-active-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 16px;
+        color: inherit;
+        text-align: center;
+    }
+.defaultcarrieravailable{
+    color:red;
+    cursor:pointer;
+    font-size: 10px; 
+}
+.greenstatus{
+    color:green;
+    cursor:pointer;
+    font-size: 15px;
+}
+.redstatus{
+    color:red;
+    cursor:pointer;
+    font-size: 10px;
+}
 /*Custom button styles end*/
 

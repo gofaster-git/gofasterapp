@@ -143,7 +143,24 @@ $scope.callingTrack = function() {
     }
 
     $rootScope.openProfilePage = function(){
-      $location.path('/profile');
+      
+      //If the user has already registered then direct user to BecomeCarrier page
+      //or
+      //If not registered, direct user to login/register page
+      if($rootScope.current_user == 'Guest')
+      {
+        $location.path('/home');
+        //goto login page
+        $rootScope.modalInstance = modalWindow.open({
+          templateUrl: 'login.html',
+          controller: 'AuthController'
+        });
+      }
+      else
+      {
+        $rootScope.isProfile=true;
+        $location.path('/BecomeCarrier');
+      }
     }
     
 }]);

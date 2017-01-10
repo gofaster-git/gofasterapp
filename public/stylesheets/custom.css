@@ -395,11 +395,11 @@ span.customround-tabs {
     .no-gutter--right {
         padding-right: 0;
     }
-    .btn-blue {
+    /*.btn-blue {
         background-color: transparent;
         color: #337ab7;
         border: 1px solid #337ab7;
-    }
+    }*/
 .customfade {
     opacity: 0;
     -webkit-transition: opacity 0.15s linear;
@@ -576,6 +576,17 @@ li.active span.customround-tabs.six{
     clear: both;
 }
 /*Custom button styles start*/
+.btn-red {
+    color: #a94442;
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn-red:hover, {
+    color: #333333;
+    background-color: #fafafa;
+    border-color: #fafafa;
+ }
+
 .btn-blue {
     background-color: #3498DB;
     color: #FDFEFE;

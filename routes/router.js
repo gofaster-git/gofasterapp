@@ -49,7 +49,7 @@ router.post('/upload', function(req, res) {
     // var base64 = (sampleFile.data.toString('base64'));
     // res.send(base64);        
 
-    sampleFile.mv('./Content/Images/'+sampleFile.name, function(err) {
+    sampleFile.mv('./public/images/'+sampleFile.name, function(err) {
         if (err) {
             res.status(500).send(err);
         }
@@ -59,7 +59,7 @@ router.post('/upload', function(req, res) {
     });
 });
 router.get('/deleteFile', function(req, res) {
-  fs.remove('./Content/Images/'+req.query.fileName, function (err) {
+  fs.remove('./public/images/'+req.query.fileName, function (err) {
     if (err)
     {
       return console.error(err);
@@ -433,7 +433,7 @@ router.post('/carrierDocumentsSave', function(req, res, done){
       req.body.documents[0].forEach(function(element) {
         if(element.file)
         {
-          var fileAfterRead = fs.readFileSync('./Content/Images/'+element.file);
+          var fileAfterRead = fs.readFileSync('./public/images/'+element.file);
           var binaryData = {};
           binaryData.bin = Binary(fileAfterRead);
           element.passport = binaryData.bin;
@@ -443,7 +443,7 @@ router.post('/carrierDocumentsSave', function(req, res, done){
       req.body.documents[4].forEach(function(element) {
         if(element.conduct)
         {
-          var fileAfterRead = fs.readFileSync('./Content/Images/'+element.conduct);
+          var fileAfterRead = fs.readFileSync('./public/images/'+element.conduct);
           var binaryData = {};
           binaryData.bin = Binary(fileAfterRead);
           element.conduct = binaryData.bin;
@@ -468,7 +468,7 @@ router.post('/carrierDocumentsSave', function(req, res, done){
 });
 //carrierGet
 router.get('/carrierGet', function(req, res, done){
-    Carrier.findOne({ 'username' :  req.user.username }, 
+    Carrier.findOne({ 'username' :  req.user._doc.username }, 
     function(err, carrier) {
         if (err)
             res.send(err);
@@ -476,24 +476,42 @@ router.get('/carrierGet', function(req, res, done){
             console.log('User Not Found with userId '+req.user.username);
             res.send("user not found");               
         }
-        // before sending carrier list object, conver the files back to normal format and store them in a local drive
+        // before sending carrier list object, convert the files back to normal format and store them in a local drive
         
-        carrier._doc.documents[0].forEach(function(element) {
-          if(element.passport)
-          {
-            //extract the country name from the object and assign it to the name of dropdown
-            if(element.name){element.name = element.name.name;}
-            //Create the file with the same name
-            var createfile = './Content/Images/'+element.file;
-              fs.ensureFile(createfile, function (err) {
-                // file has now been created, including the directory it is to be placed in
-                fs.writeFile('./Content/Images/'+element.file, element.passport.buffer, function(err){
-                  if (err) throw err;
-                  console.log('Sucessfully saved!');
-                });
-              })
-          }
-        }, this);
+        // carrier._doc.documents[0].forEach(function(element) {
+        //   if(element.passport)
+        //   {
+        //     //extract the country name from the object and assign it to the name of dropdown
+        //     if(element.name){element.name = element.name.name;}
+        //     //Create the file with the same name
+        //     var createfile = './Content/Images/'+element.file;
+        //       fs.ensureFile(createfile, function (err) {
+        //         // file has now been created, including the directory it is to be placed in
+        //         fs.writeFile('./Content/Images/'+element.file, element.passport.buffer, function(err){
+        //           if (err) throw err;
+        //           console.log('Sucessfully saved!');
+        //         });
+        //       })
+        //   }
+        // }, this);
+        //Check if the language list has data, assign dropdown values properly
+        // if(carrier.communication[0])
+        // {
+        //   carrier.communication[0].englishrate=carrier.communication[0].englishrate.rate;
+        // }
+        //   if(carrier.communication[1].length>0)
+        //   {
+        //       carrier._doc.communication[1].forEach(function(element) {
+        //           if(element.name)
+        //           {
+        //               element.name = element.name.name;
+        //           }
+        //           if(element.rating)
+        //           {
+        //               element.rate = element.rating.rate;
+        //           }
+        //       }, this);
+        //   }
         res.send(carrier);
     });
 });

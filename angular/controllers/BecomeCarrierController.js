@@ -594,7 +594,7 @@ $scope.mandatoryCheckFunction = function(value){
 //Below function is used to display the tooltip over the list icon
 $(function(){
     $('a[title]').tooltip();
-    // $('span[title]').tooltip();
+    //$('span[title]').tooltip();
 });
 $scope.savePersonal = function(){
     $scope.carrierList=[];
@@ -606,8 +606,8 @@ $scope.savePersonal = function(){
         if(data == 'success'){
             alert('Data saved successfully!');
             $rootScope.isStepOne = true;
-            // angular.element('clickme').find('a').triggerHandler('click');
-            window.scrollTo(0, 0);
+            angular.element('clickme').find('a').triggerHandler('click');
+            // window.scrollTo(0, 0);
         }
         else{
             alert('Some issue while saving the data');  
@@ -617,6 +617,7 @@ $scope.savePersonal = function(){
 $scope.saveCommunication = function(){
     $scope.carrierList=[];
     $scope.carrierList.push($scope.communication.language);
+    $scope.carrierList.push($scope.languageList);
     $scope.carrierList.push($scope.communication.adHocContact);
     $scope.carrierList.push($scope.communication.emergencyCont);
     $http.post('/carrierCommunicationSave', {communication:$scope.carrierList}).
@@ -704,14 +705,7 @@ $scope.saveDocuments = function(){
         }
     });
 };
-$scope.getPersonal = function(){
-    $http.get('/carrierGet').
-        success(function(data)
-        {
-			$scope.passportList=data.documents[0]; 
-		});
-    window.scrollTo(0, 0);
-    };
+
 
 
 //     $(document).ready(function () {
@@ -746,4 +740,90 @@ $scope.getPersonal = function(){
 // function prevTab(elem) {
 //     $(elem).prev().find('a[data-toggle="tab"]').click();
 // }
+$scope.getPersonal = function(){
+    $http.get('/carrierGet').
+        success(function(data)
+        {
+			$scope.passportList=data.documents[0]; 
+		});
+    window.scrollTo(0, 0);
+    };
+//Below code will get the carrier data from db and loads the profile if it has come from profile link
+if ($rootScope.isProfile)
+{
+    $rootScope.isProfile = false;
+    //$scope.getPersonal = function(){
+    $http.get('/carrierGet').
+        success(function(data)
+        {
+			//$scope.passportList=data.documents[0];
+            //Load Personal Tab
+            if(data.personalinfo[0])
+            {$scope.personal.identity = data.personalinfo[0];}
+            if(data.personalinfo[1])
+            {$scope.personal.homeaddress = data.personalinfo[1];}
+            //Load communication tab
+            if(data.communication[0])
+            {$scope.communication.language = data.communication[0];}
+            if(data.communication[1])
+            {$scope.languageList = data.communication[1];}
+            if(data.communication[2])
+            {$scope.communication.adHocContact = data.communication[2];}
+            if(data.communication[3])
+            {$scope.communication.emergencyCont = data.communication[3];}
+                //Check if the language list has data, assign dropdown values properly
+                // if(data.communication[1].length>0)
+                // {
+                //     var rowcount=0;
+                //     $scope.languageList = [];
+                //     data.communication[1].forEach(function(element) { 
+                //         $scope.addLanguage();
+                //         if(element.name)
+                //         {
+                //             $scope.languageList[rowcount].name = element.name.name;
+                //         }
+                //         if(element.rating)
+                //         {
+                //             $scope.languageList[rowcount].rating.rate = element.rating.rate;
+                //         }
+                //         rowcount++;
+                //     }, this);
+                // }
+            //Load aboutyou tab
+            if(data.aboutyou[0])
+            {$scope.aboutyou.motivation = data.aboutyou[0];}
+            if(data.aboutyou[1])
+            {$scope.aboutyou.socialMedia = data.aboutyou[1];}
+            //Load profession tab
+            if(data.profession[0])
+            {$scope.profession.currentJob = data.profession[0];}
+            if(data.profession[1])
+            {$scope.profession.education = data.profession[1];}
+            //Load verification tab
+            if(data.verification[0])
+            {$scope.verification.obcExp = data.verification[0];}
+            if(data.verification[1])
+            {$scope.verification.freelance = data.verification[1];}
+            if(data.verification[2])
+            {$scope.verification.insurance = data.verification[2];}
+            //Load documents tab
+            if(data.documents[0])
+            {$scope.passportList = data.documents[0];}
+            if(data.documents[1])
+            {$scope.visaList = data.documents[1];}
+            if(data.documents[2])
+            {$scope.frequentFlyList = data.documents[2];}
+            if(data.documents[3])
+            {$scope.certificateList = data.documents[3];}
+            if(data.documents[4])
+            {$scope.documentsList = data.documents[4];}
+
+		});
+    // window.scrollTo(0, 0);
+    //};
+}
+else
+{
+    //Do Nothing
+}
 });

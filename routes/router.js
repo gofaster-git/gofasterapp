@@ -474,6 +474,7 @@ router.post('/availableSave', function(req, res, done){
           if (req.body.carrieravailable){
               exists.from = req.body.carrieravailable.from;
               exists.to = req.body.carrieravailable.to;
+              exists.dateoftravel = req.body.carrieravailable.dateoftravel;
               exists.carrierstatus = "yes";          
           }
           exists.save(function(err)
@@ -561,6 +562,20 @@ router.get('/carrierGet', function(req, res, done){
         //           }
         //       }, this);
         //   }
+        res.send(carrier);
+    });
+});
+//loadCarriers function
+router.get('/loadCarriers', function(req, res, done){
+    Carrier.find({ 'from' :  req.query.from, 'to' :  req.query.to, 'carrierstatus' : 'yes'},
+                { personalinfo: 1, dateoftravel: 1, from: 1, to:1, isverified:1 }, 
+    function(err, carrier) {
+        if (err)
+            res.send(err);
+        if (!carrier){
+            console.log('Carriers not found between the given locations');
+            res.send("carriers not found");               
+        }
         res.send(carrier);
     });
 });

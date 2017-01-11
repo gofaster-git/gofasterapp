@@ -413,61 +413,87 @@ h1, h2, h3 {
        </form> 
     </div>
 </div>-->
-<div id="carriersearch" class="row">
-    
-<p style="text-align:center;color:white;font-weight:bold;padding-top:30%">Under construction!</p>
-<!--<table st-table="rowCollection" class="table table-striped">
-	<tbody>
-	    <tr ng-repeat="row in rowCollection" class="trip-search-results" st-select-row="row"  st-select-mode="single">
-		<td>
-            <div class="ProfileCard ProfileCard--condensed">
-                <div class="ProfileCard-head">
-                        <div class="ProfileCard-picture">
-                            <div class="PhotoWrapper PhotoWrapper--medium">
-                                <img src="images/mani.png" width="72" height="72" alt="" class="PhotoWrapper-user PhotoWrapper-user--medium u-rounded ">
-                                <i class="u-green glyphicon glyphicon-ok-sign" aria-hidden="true">Verified</i>
-                                
-                            </div>
-                        </div>
-                        <div class="ProfileCard-infosBlock">
-                            <h2 class="ProfileCard-info ProfileCard-info--name u-truncate">
-                                Mani R
-                            </h2>
-                            <div class="ProfileCard-info">
-                                35 yrs<br>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            
-        </td>
-		<td>
-            <div class="description">
-                <h3 class="time light-gray" itemprop="startDate" content="2016-11-24">
-                    Date: 12, Dec, 2016
-                </h3>
-                <div>
-                    <i class="u-green glyphicon glyphicon-hand-right" title="Pick-up point">
-                        {{from_city}}
-                    </i>
-                </div>
-                <div>
-                    <i class="u-red glyphicon glyphicon-hand-right" title="Drop-off point">
-                        {{to_city}}
-                    </i>
-                </div>
-            </div>
-        </td>
-		<td>
-            <div class="price price-black">
-                <strong><span class>
-                £ 50
-                </span></strong>
-            </div>
-        </td>
-	</tr>
-	</tbody>
-</table>-->
+<div id="carriersearch" class="customrow">
+    <div class="customboard">
+        <div class="tab-content">
+            <div class="form-inline" style="color: #ffc800;text-align: center;vertical-align: middle;padding-top:1%;">
+                <h2 style="font-size: 1.0em;font-weight: 600;">Find Carrier</h2>
+                <input vs-google-autocomplete="{ types:['(cities)'] }" ng-model="from_city" type="text" name="From" id="from" class="form-control"
+                    placeholder="From">
+                <input vs-google-autocomplete="{ types:['(cities)'] }" ng-model="to_city" type="text" name="To" id="to" class="form-control"
+                    placeholder="To">
 
+                <span class="form-group-btn">
+            <button type="submit" id="s" class="btn btn-default btn-custom" ng-click="loadCarriers()">
+                <span class="glyphicon glyphicon-search"></span>
+                </button>
+                </span>
+                <!--</div>-->
+            </div>
 
-</div>    
+            <div class="table-responsive">
+                <table st-table="rowCollection" class="table table-hover">
+                    <tbody>
+                        <tr ng-show="rowCollection!='undefined' && rowCollection!='null' && rowCollection.length!=0" ng-repeat="row in rowCollection" class="trip-search-results" st-select-row="row" st-select-mode="single">
+                            <td>
+                                <div class="ProfileCard ProfileCard--condensed">
+                                    <div class="ProfileCard-head">
+                                        <div class="ProfileCard-picture">
+                                            <div class="PhotoWrapper PhotoWrapper--medium">
+                                                <img src="images/mani.png" width="72" height="72" alt="" class="PhotoWrapper-user PhotoWrapper-user--medium u-rounded ">
+                                                <i ng-show="row.isverified" class="u-green glyphicon glyphicon-ok-sign" aria-hidden="true">Verified</i>
+                                                <i ng-show="!row.isverified"class="u-red glyphicon glyphicon-question-sign" aria-hidden="true">Not Verified</i>
+                                            </div>
+                                        </div>
+                                        <div class="ProfileCard-infosBlock">
+                                            <h2 class="ProfileCard-info ProfileCard-info--name u-truncate">
+                                                {{row.personalinfo[0].first_name}}
+                                            </h2>
+                                            <div class="ProfileCard-info">
+                                                {{getDateForAge(row.personalinfo[0].SelectedMonth, row.personalinfo[0].SelectedDay, row.personalinfo[0].SelectedYear) | ageFilter}} yrs<br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="description">
+                                    <h3 class="time light-gray">
+                                        Date: {{row.dateoftravel | date:'MMM dd, yyyy'}}
+                                    </h3>
+                                    <div>
+                                        <i class="u-green glyphicon glyphicon-hand-right" title="Source">
+                                {{row.from}}
+                            </i>
+                                    </div>
+                                    <div>
+                                        <i class="u-red glyphicon glyphicon-hand-right" title="Destination">
+                                {{row.to}}
+                            </i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="price price-black">
+                                    <strong><span class>
+                                            £ 50
+                                    </span></strong>
+                                </div>
+                                <div class="ProfileCard-info">
+                                    <button type="submit" class="btn btn-custom btn-sm">
+                                    Pick me</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-show="rowCollection=='undefined' ||rowCollection=='null' || rowCollection.length==0 ">
+                                    Carrier(s) not found.                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

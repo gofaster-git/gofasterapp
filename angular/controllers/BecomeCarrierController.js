@@ -773,6 +773,17 @@ if ($rootScope.isProfile)
     $http.get('/carrierGet').
         success(function(data)
         {
+            //Set the carrier status and make available/unavailable styles
+            if(data.carrierstatus == "yes")
+            {
+                $scope.availableValue = "greenstatus";
+                $scope.unavailableValue = "redstatus";
+            }
+            else
+            {
+                $scope.availableValue = "redstatus";
+                $scope.unavailableValue = "greenstatus";
+            }
 			//$scope.passportList=data.documents[0];
             //Load Personal Tab
             if(data.personalinfo[0])

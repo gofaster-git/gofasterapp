@@ -81,26 +81,6 @@ hr {
      border-radius: 10px;
 }
 </style>
-<script>
-$(function() {
-
-    $('#login-form-link').click(function(e) {
-    	$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
-		$('#register-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-	$('#register-form-link').click(function(e) {
-		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
-		$('#login-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-
-});
-</script>
 <div>
     <div class="panel panel-login" style="padding-top:3%">
         <div class="panel-heading">
@@ -126,14 +106,33 @@ $(function() {
                             <label for="from" class="col-sm-2 control-label">
                                 From</label>
                             <div class="col-sm-10">
-                                <input name="from" type="text" ng-model="available.from" class="form-control" id="from" placeholder="From location"/>
+                                <input vs-google-autocomplete="{ types:['(cities)'] }"
+                                    ng-model="available.from"
+                                    type="text"
+                                    name="from"
+                                    id="from"
+                                    class="form-control"
+                                    placeholder="From">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="to" class="col-sm-2 control-label">
                                 To</label>
                             <div class="col-sm-10">
-                                <input name="to" type="text" ng-model="available.to" class="form-control" id="to" placeholder="To location"/>
+                                <input vs-google-autocomplete="{ types:['(cities)'] }"
+                                    ng-model="available.to"
+                                    type="text"
+                                    name="to"
+                                    id="to"
+                                    class="form-control"
+                                    placeholder="To">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateoftravel" class="col-sm-2 control-label">
+                                Date of travel</label>
+                            <div class="col-sm-10">
+                                <input name="dateoftravel" type="date" ng-model="available.dateoftravel" class="form-control" id="dateoftravel"/>
                             </div>
                         </div>
                         <div class="row">

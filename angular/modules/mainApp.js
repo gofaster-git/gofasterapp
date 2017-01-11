@@ -160,6 +160,17 @@ return{
     
     };
 });
+main.filter('ageFilter', function() {
+     function calculateAge(birthday) { // birthday is a date
+         var ageDifMs = Date.now() - birthday.getTime();
+         var ageDate = new Date(ageDifMs); // miliseconds from epoch
+         return Math.abs(ageDate.getUTCFullYear() - 1970);
+     }
+
+     return function(birthdate) { 
+           return calculateAge(birthdate);
+     }; 
+});
 //below factory code is for authentication, User Current Session Need to Get and get to go
 // main.factory('authorizationService', function ($resource, $q, $rootScope, $location) {
 // return {

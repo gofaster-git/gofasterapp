@@ -7,7 +7,7 @@ $scope.to_city = $rootScope.toValue;
 $scope.rowCollection = [];
 //Below function will calculate age from the given date of birth
 $scope.getDateForAge = function (day,month,year) { // birthday is a date
-    return new Date(day,month,year);
+    return new Date(day+'/'+month+'/'+year);
 }
 //Below function will get the carrier details for the selected to and from location(s).
 $scope.loadCarriers = function(){

@@ -122,6 +122,18 @@ main.config([
                 caseInsensitiveMatch: true,
                 controller: 'BecomeCarrierController'
             })
+            .state('checkout',{
+                url: '/checkout',
+                templateUrl: 'checkout.html',
+                caseInsensitiveMatch: true,
+                controller: 'CheckoutController'
+            })
+            .state('payment',{
+                url: '/payment',
+                templateUrl: 'payment.html',
+                caseInsensitiveMatch: true,
+                controller: 'CheckoutController'
+            })
             // .state('profile',{
             //     url: '/profile',
             //     templateUrl: 'profile.html',

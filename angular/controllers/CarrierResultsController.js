@@ -18,4 +18,8 @@ $scope.loadCarriers = function(){
         });
 }
 $scope.loadCarriers();
+$scope.checkout = function(data){
+    $rootScope.checkoutdata = data;
+    $location.path('/checkout');
+}
 });

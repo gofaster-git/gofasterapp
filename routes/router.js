@@ -15,6 +15,7 @@ var Carrier = mongoose.model('Carrier');
 var User = mongoose.model('User');
 var fs = require('fs-extra');
 var Binary = require('mongodb').Binary;
+var stripe = require('stripe')('sk_test_FMCGuEXZJgRoWd7YOqpk27mK');
 //Used for routes that must be authenticated.
 // function isAuthenticated (req, res, next) {
 //     // if user is authenticated in the session, call the next() to call the next request handler 
@@ -38,6 +39,24 @@ var Binary = require('mongodb').Binary;
 //Register the authentication middleware
 //router.use('/', isAuthenticated);
 //signup request
+router.post('/charge', function(req, res) {
+    var stripeToken = req.body.stripeToken;
+    var amount = 5000;
+
+    stripe.charges.create({
+        card: stripeToken,
+        currency: 'usd',
+        amount: amount
+    },
+    function(err, charge) {
+        if (err) {
+            res.send(500, err);
+        } else {
+            res.send(204);
+        }
+    });
+});
+
 router.post('/upload', function(req, res) {
   var sampleFile;
 		if (!req.files) {

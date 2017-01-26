@@ -1,20 +1,55 @@
-<!--<script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">PARCEL EXPRESS</a>
         </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                <a class="page-scroll" href="#page-top"></a>
+                </li>
+                <li>
+                <a class="page-scroll" href="#about">HOW IT WORKS</a>
+                </li>
+                <li>
+                <a class="page-scroll" href="#services">FIND DELIVERIES</a>
+                </li>
+                <li>
+                <a class="page-scroll" href="#contact">TRANSPORT</a>
                 </li>
             </ul>
-            Selected: <b>{{ selected.item }}</b>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="authenticated">
+                <a class="page-scroll" href="#" ng-click="loginmodal()" data-toggle="modal">SIGN IN</a>
+                </li>
+                <li ng-show="authenticated">
+                <a class="page-scroll" href="#" ng-click="openProfilePage()">{{current_fullname.split(' ')[0]}}</a>
+                </li>
+                <li ng-show="authenticated">
+                <a class="page-scroll" href="#" ng-click="signout()">SIGN OUT</a>
+                </li>
+                <li>
+                <a class="page-scroll" href="#" ng-click="openBecomeaCarrier()" data-toggle="modal">JOIN</a>
+                </li>
+                <li>
+                <a class="page-scroll" href="#contact">HELP</a>
+                </li>
+            </ul>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>-->
+    <!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav>
+
 <style>
     input, select, textarea {
         min-width: 250px;
@@ -24,235 +59,191 @@
         padding-left: 0px;
     }
 </style>
-<div class="header container">
-    <div class="form-inline" style="color: #ffc800;text-align: center;vertical-align: middle;padding-top:10%;">
-        <h2 style="font-size: 2.0em;font-weight: 600;">Find Carrier</h2>
-        <input vs-google-autocomplete="{ types:['(cities)'] }"
-               ng-model="from_city"
-               type="text"
-               name="From"
-               id="from"
-               class="form-control"
-               placeholder="From">
-        <input vs-google-autocomplete="{ types:['(cities)'] }"
-               ng-model="to_city"
-               type="text"
-               name="To"
-               id="to"
-               class="form-control"
-               placeholder="To">
 
-        <span class="form-group-btn">
-            <button type="submit" id="s" class="btn btn-default btn-custom" ng-click="gotoCarrierResults()">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
-        <!--</div>-->
-    </div>
-    <div class="text-vertical-center">
-        <h1>GoFaster</h1>
-        <h3>Delivering Anything Anywhere</h3>
-        <br>
-        <a href="#about" class="btn btn-dark btn-lg">Find Out How</a>
-    </div>
-</div>
-<!-- About -->
-<section id="about" class="about" style="background-color:white">
+<!-- Intro Section -->
+<section id="intro" class="intro-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Work for yourself</h2>
-                <p>Travel when you want, make the money you need. It’s easy to get started. <a target="_blank" href="http://gofasterapp.com/signup">Sign Up Now..!</a></p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
-
-<!-- Services -->
-<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<section id="services" class="services bg-primary">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-10 col-lg-offset-1">
-                <h2>How GoFaster works</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                            <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-search fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Search</strong>
-                            </h4>
-                            <p>Enter "From" and "To" city to search for carriers and use sort-by option to filter carriers as per shipping date, pick-up time, package size, and price.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                            <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-check-square-o fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Choose</strong>
-                            </h4>
-                            <p>Select the carrier as per your requirement, pay online and request for pick-up.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                            <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-ticket fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Print</strong>
-                            </h4>
-                            <p>Once the payment is confirmed, shipping label will be generated which should be stuck to the parcel.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="service-item">
-                            <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-paper-plane fa-stack-1x text-primary"></i>
-                            </span>
-                            <h4>
-                                <strong>Track</strong>
-                            </h4>
-                            <p>You will get continuous updated via GoFaster App notification but you can also click on Track and enter your Waybil number to check the status.</p>
-                            <a href="#" class="btn btn-light">Learn More</a>
+            <div class="col-lg-12">
+                <div class="container body-content header">
+                    <div style="padding-left:15%;padding-top:4%;position:absolute;">
+                        <div style="border-radius:3px" class="alert1 alert-success1" ng-show="showSuccessAlert">
+                            <button style="padding-left:5px;" type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">
+                            ×
+                            </button>
+                        <strong>Done!</strong> {{successTextAlert}}
                         </div>
                     </div>
                 </div>
-                <!-- /.row (nested) -->
+                <h1>PARCEL EXPRESS</h1>
+                <h3><strong>Ship</strong> Anything, Anywhere, Anytime. </h3>
+                <form class="form-inline">
+                    <input vs-google-autocomplete="{ types:['(cities)'] }"
+                    ng-model="from_city"
+                    type="text"
+                    name="From"
+                    id="from"
+                    class="form-control"
+                    placeholder="From">
+                    <input vs-google-autocomplete="{ types:['(cities)'] }"
+                    ng-model="to_city"
+                    type="text"
+                    name="To"
+                    id="to"
+                    class="form-control"
+                    placeholder="To">
+                    <button id="s" class="btn btn-default" type="submit" ng-click="gotoCarrierResults()"> Find a Carrier
+                    </button>
+                </form>
             </div>
-            <!-- /.col-lg-10 -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container -->
 </section>
 
-<!-- Callout -->
-<aside class="callout">
-    <div class="text-vertical-center">
-        <h1>Do you want to get paid to travel? Why not become one of our trusted network of On-Board Couriers.</h1>
-    </div>
-</aside>
-
-<!-- Portfolio -->
-<section id="portfolio" class="portfolio" style="background-color:white">
-
+<!-- Services Section -->
+<section id="sender-section" class="sender-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h2>Our Testimony</h2>
-                <hr class="small">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="/images/portfolio-1.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="/images/portfolio-2.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="/images/portfolio-3.jpg">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="portfolio-item">
-                            <a href="#">
-                                <img class="img-portfolio img-responsive" src="/images/portfolio-4.jpg">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row (nested) -->
-                <a href="#" class="btn btn-dark">View More</a>
+        <div class="col-lg-5 col-sm-6">
+            <div class="clearfix"></div>
+                <p class="text-left"> TRANSPORTING WITH PARCEL EXPRESS </p>
+                <h3 class="section-heading text-left">PICK YOUR PROVIDER AND PRICE</h3>
+                <hr class="section-heading-spacer">
+                <p class="lead text-left text-justify">Parcel Express marketplace gives you access to thousands of trusted providers who compete for your business, so you can pick your price and ship with confidence.</p>
+                <a class="btn btn-default page-scroll" href="#about">Get a Free Estimate</a>
             </div>
-            <!-- /.col-lg-10 -->
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+              <img class="img-responsive" src="/images/person-woman-apple-hotel.jpg" alt="">
+            </div>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container -->
-
 </section>
 
-<!-- Call to Action -->
-<aside class="call-to-action bg-primary">
+<!-- Contact Section -->
+<section id="carrier" class="carrier-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <h3>Are you an Adventurer? See how you can get paid to travel the world.</h3>
-                <a href="#" class="btn btn-lg btn-light">Sign Up Now!</a>
-                <a href="#" class="btn btn-lg btn-dark">More Info!</a>
+             <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <div class="clearfix"></div>
+                <p class="text-left"> HAULING WITH PARCEL EXPRESS </p>
+                <h3 class="section-heading text-left">BE THE MASTER OF YOUR DOMAIN</h3>
+                <hr class="section-heading-spacer">
+                <p class="lead text-left text-justify">With new shipments posted every 30 seconds, there’s always money to be made on Parcel Express. Find lucrative jobs through the latest tools, no matter what you haul.</p>
+                <a class="btn btn-default page-scroll" href="#about">Become a Carrier</a>
+            </div>
+            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                <img class="img-responsive" src="/images/pexels-photo-195477.jpg" alt="">
             </div>
         </div>
     </div>
-</aside>
+</section>
 
-<!-- Map -->
-<section id="contact" class="map" style="background-color:white">
-    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.533579689746!2d-0.21057178432522256!3d51.41162432552249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487608bef8bb6677%3A0x4b6cb3bffb792a2e!2s269+Kingston+Rd%2C+London+SW19+3NW!5e0!3m2!1sen!2suk!4v1480865590872"</iframe>
-    <br />
-    <small>
-        <            <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.533579689746!2d-0.21057178432522256!3d51.41162432552249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487608bef8bb6677%3A0x4b6cb3bffb792a2e!2s269+Kingston+Rd%2C+London+SW19+3NW!5e0!3m2!1sen!2suk!4v1480865590872"></a>
-    </small>
-    </iframe>
+<!-- Contact Section -->
+<section id="business" class="business-section">
+    <div class="container">
+        <div class="row">
+             <div class="col-lg-5 col-sm-6">
+                 <div class="clearfix"></div>
+                 <p class="text-left"> PARCEL EXPRESS FOR BUSINESS </p>
+                 <h3 class="section-heading text-left">BUSINESS SHIPPING FOR LESS</h3>
+                 <hr class="section-heading-spacer">
+                 <p class="lead text-left text-justify">From booking to communications to payment, Parcel Express helps you transport freight faster, cheaper, safer, and easier so you can stay focused on your business.</a>.</p>
+                 <a class="btn btn-default page-scroll" href="#about">More</a>
+             </div>
+             <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                 <img class="img-responsive" src="/images/business-cash-coin-concept-41301.jpg" alt="">
+             </div>
+        </div>
+    </div>
 </section>
 
 <!-- Footer -->
-<section id="footer" class="container" style="background-color:white;vertical-align:middle;text-align:center;width:100%">
+<section id="footer" class="footer-section">
     <footer>
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 text-center;">
-                <h4 style="color:Black">
-                    <strong>GoFaster Technologies</strong>
-                </h4>
-                <p>
-                    265-269 Kingston Road
-                    <br>London, SW19 3NW
-                </p>
+                <h1>Join our trusted network of carriers.</h1>
                 <ul class="list-unstyled">
                     <li><i class="fa fa-phone fa-fw"></i> (+44) 78755-86699</li>
                     <li>
-                        <i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:support@gofasterapp.com">support@gofasterapp.com</a>
+                        <i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:support@parcel.express">support@parcel.express</a>
                     </li>
                 </ul>
                 <br>
-                <ul class="list-inline">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/gofasterapp"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                    </li>
-                </ul>
                 <hr class="small">
                 <p class="text-muted">Copyright &copy; GoFaster Technologies 2015</p>
             </div>
         </div>
      </footer>
 </section>
+<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+
+    <script>
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Scrolls to the selected menu item on the page
+        $(function() {
+            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        //#to-top button appears after scrolling
+        var fixed = false;
+        $(document).scroll(function() {
+            if ($(this).scrollTop() > 250) {
+                if (!fixed) {
+                    fixed = true;
+                    // $('#to-top').css({position:'fixed', display:'block'});
+                    $('#to-top').show("slow", function() {
+                        $('#to-top').css({
+                            position: 'fixed',
+                            display: 'block'
+                        });
+                    });
+                }
+            } else {
+                if (fixed) {
+                    fixed = false;
+                    $('#to-top').hide("slow", function() {
+                        $('#to-top').css({
+                            display: 'none'
+                        });
+                    });
+                }
+            }
+        });
+        var onMapMouseleaveHandler = function(event) {
+            var that = $(this);
+            that.on('click', onMapClickHandler);
+            that.off('mouseleave', onMapMouseleaveHandler);
+            that.find('iframe').css("pointer-events", "none");
+        }
+        var onMapClickHandler = function(event) {
+                var that = $(this);
+                // Disable the click handler until the user leaves the map area
+                that.off('click', onMapClickHandler);
+                // Enable scrolling zoom
+                that.find('iframe').css("pointer-events", "auto");
+                // Handle the mouse leave event
+                that.on('mouseleave', onMapMouseleaveHandler);
+            }
+            // Enable map zooming with mouse scroll when the user clicks the map
+        $('.map').on('click', onMapClickHandler);
+    </script>

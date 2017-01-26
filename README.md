@@ -1,1 +1,1 @@
-# GoFaster
+# 2015 GoFaster Technologies Ltd.

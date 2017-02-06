@@ -1,4 +1,4 @@
-﻿//main controller
+//main controller
 main.controller("MainController", ['$scope', '$http', '$rootScope','$uibModal', '$location', function ($scope, $http, $rootScope,modalWindow,$location) {
     var thisScope = $scope;
     $scope.from_city="";

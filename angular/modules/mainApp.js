@@ -1,4 +1,4 @@
-﻿//Angular Starter App
+//Angular Starter App
 var main = angular.module("main", ['ui.router','ngRoute','ngResource','ui.bootstrap','vsGoogleAutocomplete','ngFileUpload'])
 .run(function($http,$rootScope,$anchorScroll)
 {
@@ -101,7 +101,7 @@ main.config([
             })
             .state('register',{
                 url: '/register',
-                templateUrl: 'register.html',
+                templateUrl: 'login.html',
                 caseInsensitiveMatch: true,
                 controller: 'AuthController'
             })
